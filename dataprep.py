@@ -55,7 +55,7 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs):
         running_loss = 0.0
         for inputs, labels in train_loader:
             inputs, labels = inputs.to(device), labels.to(device)
-            
+
             optimizer.zero_grad()
 
             # Forward pass
@@ -99,11 +99,11 @@ def predict_image(image_path, model):
     model.eval()
     image = Image.open(image_path)
     image = transform(image).unsqueeze(0).to(device)
-    
+
     with torch.no_grad():
         output = model(image)
         _, predicted = torch.max(output, 1)
-    
+
     predicted_class = train_dataset.classes[predicted.item()]
     return predicted_class
 
